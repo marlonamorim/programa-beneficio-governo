@@ -1,0 +1,6 @@
+@MGM.Pbgov.Api_HostAddress = http://localhost:5184
+
+GET {{MGM.Pbgov.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
