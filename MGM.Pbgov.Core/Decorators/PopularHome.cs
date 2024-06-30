@@ -4,7 +4,7 @@ namespace MGM.Pbgov.Core.Decorators
 {
     internal abstract class PopularHome : IPopularHome
     {
-        private const decimal MonthlyIncomeLimit = 1.500m;
+        private const decimal MonthlyIncomeLimit = 1500m;
 
         public bool FamilyIsAuthorized(FamilyEntity familyEntity)
             => familyEntity.MonthlyIncome <= MonthlyIncomeLimit;

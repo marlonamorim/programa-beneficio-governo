@@ -24,6 +24,8 @@ namespace MGM.Pbgov.Core.Query
                 await _calculatePointsEventEmitter.ApplyDependentQuantityRangeRule(family);
 
                 filteredFamilies.Add(family.ToValueObject(_calculatePointsEventEmitter.CalculatePoints));
+
+                _calculatePointsEventEmitter.EmptyPoints();
             }
 
             filteredFamilies = [.. filteredFamilies.OrderByDescending(c => c.Points)];

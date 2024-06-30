@@ -9,7 +9,6 @@ namespace MGM.Pbgov.Core.DependencyInjection
     {
         public static IServiceCollection AddDomainServices(this IServiceCollection services)
         {
-            services.AddSingleton<CalculatePointsEvent>();
             services.AddSingleton<CalculatePointsEventEmitter>();
             services.AddSingleton<IMonthlyIncomeRangeDecorator, MonthlyIncomeRangeDecorator>();
             services.AddSingleton<IDependentQuantityRangeDecorator, DependentQuantityRangeDecorator>();

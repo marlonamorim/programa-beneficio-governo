@@ -5,12 +5,10 @@ using MGM.Pbgov.Entities.Family;
 namespace MGM.Pbgov.Core.Events
 {
     public class CalculatePointsEventEmitter(IMonthlyIncomeRangeDecorator monthlyIncomeRangeDecorator,
-        IDependentQuantityRangeDecorator dependentQuantityRangeDecorator,
-        CalculatePointsEvent calculatePointsEvent)
+        IDependentQuantityRangeDecorator dependentQuantityRangeDecorator)
     {
         private readonly IMonthlyIncomeRangeDecorator _monthlyIncomeRangeDecorator = monthlyIncomeRangeDecorator;
         private readonly IDependentQuantityRangeDecorator _dependentQuantityRangeDecorator = dependentQuantityRangeDecorator;
-        private readonly CalculatePointsEvent _calculatePointsEvent = calculatePointsEvent;
 
         internal int CalculatePoints { get; private set; }
 
@@ -26,10 +24,15 @@ namespace MGM.Pbgov.Core.Events
             Calculate(pointsByDependentQuantityRange);
         }
 
+        public void EmptyPoints()
+            => CalculatePoints = 0;
+
         private void Calculate(int points)
         {
-            _calculatePointsEvent.ScoreCompleted += Ev_CalculatePoints;
-            _calculatePointsEvent.StartProcess(points);
+            var calculatePointsEvent = new CalculatePointsEvent();
+
+            calculatePointsEvent.ScoreCompleted += Ev_CalculatePoints;
+            calculatePointsEvent.StartProcess(points);
         }
 
         private void Ev_CalculatePoints(object sender, int Points)
